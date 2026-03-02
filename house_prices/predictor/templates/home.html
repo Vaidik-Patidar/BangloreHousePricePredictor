@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}House Price Prediction{% endblock %}
+
+{% block start %}
+
+<div class="text-center mb-4 mt-4">
+<h2>Banglore House Price Prediction</h2>
+</div>
+<div class="card shadow-sm">
+<div class="card-body">
+<form method="POST" action="/predict/">
+    {% csrf_token %}
+
+  <div class="mb-3 mt-3">
+    <label class="form-label">Total Sqft Area</label>
+    <input type="number" class="form-control" id="sqft" name="sqft">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Bathrooms</label>
+    <input type="number" class="form-control" id="bath" name="bath">
+  </div>
+    <div class="mb-3">
+        <label class="form-label">BHK</label>
+        <input type="number" class="form-control" id="bhk" name="bhk">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Location</label>
+        <select class="form-select" id="location" name="location">
+            {% for loc in locations %}
+                <option value="{{ loc }}">{{ loc }}</option>
+            {% endfor %}
+        </select><br>
+    </div>
+  <button type="submit" class="btn btn-primary mb-4">Predict Price</button>
+</form>
+</div>
+</div>
+
+
+{% endblock %}
